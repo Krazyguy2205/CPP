@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <random>
+
+using namespace std;
+
+vector<int> randomVector(int &n) {
+    vector<int> v;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(1, n);
+    for (int i = 0; i < n; i++) {
+        v.push_back(dis(gen));
+    }
+    return v;
+}
+
+vector<int> removeElement(vector<int>& v, int l, int r) {
+    v.erase(v.begin() + l, v.begin() + r + 1);
+    return v;
+}
+
+int main() {
+    int n, l, r;
+    cin >> n;
+    vector<int> v = randomVector(n);
+    for (int i : v) {
+        cout << i << " ";
+    }
+    cout << endl;
+    cin >> l >> r;
+    vector<int> newV = removeElement(v, l, r);
+    for (int i : newV) {
+        cout << i << " ";
+    }
+}
